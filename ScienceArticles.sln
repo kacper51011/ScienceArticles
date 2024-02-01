@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScienceArticles.Application
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScienceArticles.Infrastructure", "ScienceArticles.Infrastructure\ScienceArticles.Infrastructure.csproj", "{3D9A550D-BBEA-4863-A255-E87F53E2251B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScienceArticles.Core", "ScienceArticles.Core\ScienceArticles.Core.csproj", "{69E5F12D-3B57-4CFF-8FB9-B6B219C1F145}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3D9A550D-BBEA-4863-A255-E87F53E2251B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D9A550D-BBEA-4863-A255-E87F53E2251B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D9A550D-BBEA-4863-A255-E87F53E2251B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69E5F12D-3B57-4CFF-8FB9-B6B219C1F145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69E5F12D-3B57-4CFF-8FB9-B6B219C1F145}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69E5F12D-3B57-4CFF-8FB9-B6B219C1F145}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69E5F12D-3B57-4CFF-8FB9-B6B219C1F145}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
