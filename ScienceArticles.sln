@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScienceArticles.API", "ScienceArticles.API\ScienceArticles.API.csproj", "{11B27B2A-06AE-4B95-A9FC-941EE55425F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScienceArticles.Application", "ScienceArticles.Application\ScienceArticles.Application.csproj", "{4240C34E-441F-4DF7-8A88-C303314C3782}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{11B27B2A-06AE-4B95-A9FC-941EE55425F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11B27B2A-06AE-4B95-A9FC-941EE55425F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11B27B2A-06AE-4B95-A9FC-941EE55425F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4240C34E-441F-4DF7-8A88-C303314C3782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4240C34E-441F-4DF7-8A88-C303314C3782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4240C34E-441F-4DF7-8A88-C303314C3782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4240C34E-441F-4DF7-8A88-C303314C3782}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
