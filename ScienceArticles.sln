@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScienceArticles.API", "Scie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScienceArticles.Application", "ScienceArticles.Application\ScienceArticles.Application.csproj", "{4240C34E-441F-4DF7-8A88-C303314C3782}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScienceArticles.Infrastructure", "ScienceArticles.Infrastructure\ScienceArticles.Infrastructure.csproj", "{3D9A550D-BBEA-4863-A255-E87F53E2251B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4240C34E-441F-4DF7-8A88-C303314C3782}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4240C34E-441F-4DF7-8A88-C303314C3782}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4240C34E-441F-4DF7-8A88-C303314C3782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D9A550D-BBEA-4863-A255-E87F53E2251B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D9A550D-BBEA-4863-A255-E87F53E2251B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D9A550D-BBEA-4863-A255-E87F53E2251B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D9A550D-BBEA-4863-A255-E87F53E2251B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
