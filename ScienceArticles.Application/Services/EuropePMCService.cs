@@ -26,10 +26,26 @@ namespace ScienceArticles.Application.Services
                 var data = response.@return.resultList;
 
                 var dtoList = new List<SearchPublicationsResponseItemDto>();
-                //foreach(result result in data)
-                //{
-                //    result.
-                //}
+                foreach (result result in data)
+                {
+                    var item = new SearchPublicationsResponseItemDto();
+                    item.Abstract = result.abstractText;
+                    
+                    item.ServiceId = result.id;
+                    item.Title = result.title;
+                    item.PublicationYear = result.pubYear;
+                    item.FullText = result.fullText;
+
+                    var authors = new List<string>();
+                    foreach(var authorItem in result.authorList)
+                    {
+                        authors.Add(authorItem.firstName + " " + authorItem.lastName);
+                    }
+                    item.Authors = authors;
+
+                    dtoList.Add(item);
+                }
+                return dtoList;
             }
             catch (Exception)
             {
