@@ -10,4 +10,14 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ScienceArticles.Core\ScienceArticles.Domain.csproj" />
+    <ProjectReference Include="..\ScienceArticles.Infrastructure\ScienceArticles.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
