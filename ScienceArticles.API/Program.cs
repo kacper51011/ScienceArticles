@@ -1,7 +1,12 @@
+using ScienceArticles.Application.env;
 using ScienceArticles.Application.Queries.GetArticlesFromService;
 using ScienceArticles.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var root = Directory.GetCurrentDirectory();
+var dotenv = Path.Combine(root, ".env");
+DotEnv.Load(dotenv);
 
 // Add services to the container.
 

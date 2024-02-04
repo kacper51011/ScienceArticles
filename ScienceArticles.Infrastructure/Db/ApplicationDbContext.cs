@@ -16,7 +16,7 @@ namespace ScienceArticles.Infrastructure.Db
         public DbSet<Category> Categories { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            
+            // todo
         }
     }
 }
