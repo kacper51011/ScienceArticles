@@ -22,7 +22,7 @@ namespace ScienceArticles.Application.Queries.GetArticlesFromService
         {
             try
             {
-                var response = await _service.SearchPublicationsAsync(request.dto);
+                var response = await _service.FindPublicationsAsync(request.dto);
 
                 return response;
             }

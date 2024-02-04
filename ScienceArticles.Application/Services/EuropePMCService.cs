@@ -1,5 +1,4 @@
 ﻿using EuropePMCServiceConnection;
-using ScienceArticles.Application.Dtos.GetArticleText;
 using ScienceArticles.Application.Dtos.SearchPublications;
 
 namespace ScienceArticles.Application.Services
@@ -11,12 +10,49 @@ namespace ScienceArticles.Application.Services
         {
             _client = new WSCitationImplClient();
         }
-        public Task<GetArticleTextResponseDto> FulltextXMLAsync(GetArticleTextRequestDto dto)
+
+        public async Task<SearchPublicationsResponseItemDto> FindPublicationById(string publicationId)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                var response = await _client.searchPublicationsAsync(publicationId, "core", "*", null, null, null, null);
+
+                var data = response.@return.resultList;
+
+                if (data == null)
+                {
+                    new ArgumentNullException(nameof(data));
+                }
+
+                var item = new SearchPublicationsResponseItemDto();
+                item.Abstract = data[0].abstractText;
+                item.PublicationId = data[0].id;
+                item.Title = data[0].title;
+                item.PublicationYear = data[0].pubYear;
+                item.TextLink = data[0].fullTextUrlList[0].url;
+                var authors = new List<string>();
+
+                if (data[0].authorIdList != null)
+                {
+                    foreach (var authorItem in data[0].authorList)
+                    {
+                        authors.Add(authorItem.firstName + " " + authorItem.lastName);
+                    }
+                }
+                item.Authors = authors;
+                return item;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
-        public async Task<List<SearchPublicationsResponseItemDto>> SearchPublicationsAsync(SearchPublicationsRequestDto dto)
+        public async Task<List<SearchPublicationsResponseItemDto>> FindPublicationsAsync(SearchPublicationsRequestDto dto)
         {
             try
             {
@@ -35,10 +71,15 @@ namespace ScienceArticles.Application.Services
                     var item = new SearchPublicationsResponseItemDto();
                     item.Abstract = result.abstractText;
 
-                    item.ServiceId = result.id;
+                    item.PublicationId = result.id;
                     item.Title = result.title;
                     item.PublicationYear = result.pubYear;
-                    item.FullText = result.fullText;
+
+                    if (result.fullTextUrlList != null)
+                    {
+                        item.TextLink = result.fullTextUrlList[0].url;
+                    }
+
 
                     var authors = new List<string>();
                     if (result.authorIdList != null)

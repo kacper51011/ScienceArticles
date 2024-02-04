@@ -11,8 +11,9 @@ namespace ScienceArticles.Application.Services
 {
     public interface IEuropePMCService
     {
-        public Task<List<SearchPublicationsResponseItemDto>> SearchPublicationsAsync(SearchPublicationsRequestDto dto);
-        public Task<GetArticleTextResponseDto> FulltextXMLAsync(GetArticleTextRequestDto dto);
+        public Task<List<SearchPublicationsResponseItemDto>> FindPublicationsAsync(SearchPublicationsRequestDto dto);
+
+        public Task<SearchPublicationsResponseItemDto> FindPublicationById(string publicationId);
 
     }
 }

@@ -9,11 +9,11 @@ namespace ScienceArticles.Application.Dtos.SearchPublications
     public class SearchPublicationsResponseItemDto
     {
 
-        public string ServiceId { get; set; }
+        public string PublicationId { get; set; }
         public string Title { get; set; }
         public string PublicationYear { get; set; }
         public string Abstract {  get; set; }
-        public string FullText { get; set; }
+        public string TextLink { get; set; }
         public List<string> Authors { get; set; }
     }
 }

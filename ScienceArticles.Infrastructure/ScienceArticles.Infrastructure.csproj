@@ -15,4 +15,8 @@
     <PackageReference Include="System.ServiceModel.Security" Version="4.10.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ScienceArticles.Core\ScienceArticles.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
