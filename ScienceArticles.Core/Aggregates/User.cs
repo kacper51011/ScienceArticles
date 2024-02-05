@@ -11,7 +11,7 @@ namespace ScienceArticles.Domain.Aggregates
     public class User
     {
         public UserId UserId { get; private set; }
-        public string Name { get; private set; }
+        public string Username { get; private set; }
         public string Password { get; private set; }
         public List<Article> Articles { get; private set; } = new List<Article>();
 

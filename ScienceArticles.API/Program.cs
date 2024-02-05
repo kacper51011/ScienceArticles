@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ScienceArticles.Application.env;
 using ScienceArticles.Application.Queries.GetArticlesFromService;
 using ScienceArticles.Application.Services;
 using ScienceArticles.Application.Settings;
+using ScienceArticles.Infrastructure.Db;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +32,9 @@ builder.Services.AddAuthentication(defaultScheme: JwtBearerDefaults.Authenticati
 
     }); ;
 
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
+    builder.Configuration.GetConnectionString("DefaultConnection")
+    ));
 
 builder.Services.AddSingleton<IEuropePMCService, EuropePMCService>();
 
