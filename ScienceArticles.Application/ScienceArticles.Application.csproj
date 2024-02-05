@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ScienceArticles.Core\ScienceArticles.Domain.csproj" />
     <ProjectReference Include="..\ScienceArticles.Infrastructure\ScienceArticles.Infrastructure.csproj" />
   </ItemGroup>
