@@ -8,5 +8,7 @@ namespace ScienceArticles.Domain.Interfaces
 {
     public interface ICategoryRepository
     {
+        public Task<List<ICategoryRepository>> GetCategories();
+
     }
 }

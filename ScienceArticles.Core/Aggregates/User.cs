@@ -1,10 +1,5 @@
 ﻿using ScienceArticles.Domain.Entities;
 using ScienceArticles.Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ScienceArticles.Domain.Aggregates
 {
@@ -16,5 +11,18 @@ namespace ScienceArticles.Domain.Aggregates
         public List<Article> Articles { get; private set; } = new List<Article>();
 
 
+        public static User Create(string username, string password)
+        {
+            return new User()
+            {
+                UserId = new UserId(Guid.NewGuid()),
+                Username = username,
+                Password = password,
+                Articles = new List<Article>()
+            };
+        }
+
     }
+
+
 }
