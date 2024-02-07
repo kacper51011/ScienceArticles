@@ -27,7 +27,7 @@ namespace ScienceArticles.Application.Commands.RegisterUser
                 {
                     new ArgumentException("User with that username already exists");
                 }
-                
+
                 var hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.dto.Password);
 
                 var newUser = User.Create(request.dto.UserName, hashedPassword);

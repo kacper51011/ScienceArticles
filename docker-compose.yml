@@ -1,6 +1,17 @@
 version: '3.4'
 
 services:
+  sciencearticlesdb:
+     image: mcr.microsoft.com/mssql/server:2019-latest
+     ports:
+     - 1433:1433
+     environment:
+       ACCEPT_EULA: Y
+       MSSQL_SA_PASSWORD: Kacper123
+       SA_PASSWORD: Kacper123
+       MSSQL_PID: EXPRESS
+
+
   sciencearticles.api:
     image: ${DOCKER_REGISTRY-}sciencearticlesapi
     build:

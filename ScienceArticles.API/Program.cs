@@ -24,7 +24,7 @@ builder.Configuration.AddEnvironmentVariables();
 
 builder.Services.Configure<JWTSettings>(builder.Configuration.GetSection("JWTSettings"));
 
-var authSettings = builder.Configuration.GetSection("JWTSettings");
+
 
 
 builder.Services.AddAuthentication(defaultScheme: JwtBearerDefaults.AuthenticationScheme)
@@ -41,9 +41,25 @@ builder.Services.AddAuthentication(defaultScheme: JwtBearerDefaults.Authenticati
 
     }); ;
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-    builder.Configuration.GetConnectionString("DefaultConnection")
-    ));
+var dbSettings = builder.Configuration.GetSection("Db");
+
+var port = dbSettings["Port"];
+var server = dbSettings["Server"];
+var user = dbSettings["User"];
+var database = dbSettings["Database"];
+var password = dbSettings["Password"];
+
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    Debug.WriteLine($"server: {server}");
+    Debug.WriteLine($"user: {user}");
+    Debug.WriteLine($"passw: {password}");
+    options.UseSqlServer(
+        $"Data Source={server};Initial Catalog={database};User ID={user};Password={password}; TrustServerCertificate=True;Encrypt=True;MultiSubnetFailover=True;MultipleActiveResultSets=true", b => b.MigrationsAssembly("ScienceArticles.API")
+        );
+}
+);
 
 builder.Services.AddSingleton<IEuropePMCService, EuropePMCService>();
 

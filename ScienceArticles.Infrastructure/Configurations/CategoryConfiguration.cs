@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ScienceArticles.Domain.Entities;
+using ScienceArticles.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,9 @@ namespace ScienceArticles.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Category> entity)
         {
             entity.HasKey(c => c.CategoryId);
+
+            entity.Property(x => x.CategoryId).HasConversion(id => id.Value, value => new CategoryId(value));
+
 
             entity.HasMany(x => x.Articles).WithOne(x => x.Category).HasForeignKey(x => x.CategoryId);
 
