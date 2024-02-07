@@ -24,6 +24,8 @@ builder.Configuration.AddEnvironmentVariables();
 
 builder.Services.Configure<JWTSettings>(builder.Configuration.GetSection("JWTSettings"));
 
+builder.Services.AddHttpContextAccessor();
+
 
 
 

@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using ScienceArticles.Application.Settings;
 using ScienceArticles.Domain.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 
 namespace ScienceArticles.Application.Queries.GetUserCredentials
@@ -38,11 +39,15 @@ namespace ScienceArticles.Application.Queries.GetUserCredentials
                     }
 
                     var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Value.SigningKey));
+
                     var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+                    var claims = new List<Claim>();
+                    claims.Add(new Claim("sub", user.UserId.Value.ToString()));
 
                     var securityToken = new JwtSecurityToken(_jwtSettings.Value.Issuer,
                         _jwtSettings.Value.Audience,
-                        null,
+                        claims,
                         expires: DateTime.Now.AddHours(3),
                         signingCredentials: credentials);
 
