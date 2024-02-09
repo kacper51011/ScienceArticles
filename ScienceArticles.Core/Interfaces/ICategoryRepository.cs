@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScienceArticles.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace ScienceArticles.Domain.Interfaces
 {
     public interface ICategoryRepository
     {
-        public Task<List<ICategoryRepository>> GetCategories();
+        public Task<List<Category>> GetCategories();
 
     }
 }
