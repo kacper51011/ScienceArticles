@@ -4,6 +4,7 @@ using ScienceArticles.Application.Services;
 using ScienceArticles.Domain.Entities;
 using ScienceArticles.Domain.Interfaces;
 using ScienceArticles.Domain.ValueObjects;
+using System.Security.Claims;
 
 namespace ScienceArticles.Application.Commands.CreateSavedUserArticle
 {
@@ -27,7 +28,7 @@ namespace ScienceArticles.Application.Commands.CreateSavedUserArticle
             try
             {
 
-                var userId = _contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "sub")?.Value;
+                var userId = _contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
                 if (userId == null)
                 {
                     throw new ArgumentNullException("UserId not specified");
@@ -39,7 +40,7 @@ namespace ScienceArticles.Application.Commands.CreateSavedUserArticle
                     throw new ArgumentNullException("couldn`t find specified publication");
                 }
 
-                var ArticleToSave = Article.Create(publication.PublicationId, publication.Title, publication.PublicationYear, publication.Abstract, publication.TextLink, new UserId(Guid.Parse(userId)) , new CategoryId(request.dto.CategoryId));
+                var ArticleToSave = Article.Create(publication.PublicationId, publication.Title, publication.PublicationYear, publication.Abstract, publication.TextLink, new UserId(Guid.Parse(userId)) , new CategoryId(Guid.Parse(request.dto.CategoryId)));
 
                 await _articleRepository.SaveArticle(ArticleToSave);
 

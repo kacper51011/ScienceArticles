@@ -20,5 +20,20 @@ namespace ScienceArticles.Domain.Entities
         public User User {  get; private set; }
         public CategoryId CategoryId { get; private set; }
         public Category Category { get; private set; }
+
+        public static Article Create(string publicationId, string title, string publicationYear, string abstractArg, string textLink, UserId userId, CategoryId categoryId)
+        {
+            return new Article()
+            {
+                PublicationId = publicationId,
+                Title = title,
+                PublicationYear = publicationYear,
+                Abstract = abstractArg,
+                TextLink = textLink,
+                UserId = userId,
+                CategoryId = categoryId,
+                ArticleId = new ArticleId(Guid.NewGuid())
+            };
+        }
     }
 }
