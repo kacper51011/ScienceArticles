@@ -17,6 +17,10 @@ namespace ScienceArticles.API.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Endpoint for getting categories, used when creating saved user articles
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<List<CategoryResponeItem>>> GetCategories()
         {

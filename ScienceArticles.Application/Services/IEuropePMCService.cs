@@ -1,5 +1,4 @@
 ﻿using EuropePMCServiceConnection;
-using ScienceArticles.Application.Dtos.GetArticleText;
 using ScienceArticles.Application.Dtos.SearchPublications;
 using System;
 using System.Collections.Generic;

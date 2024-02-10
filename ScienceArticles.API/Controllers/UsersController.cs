@@ -18,6 +18,11 @@ namespace ScienceArticles.API.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Endpoint for authorizing a user.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns>Returns JWT Token</returns>
         [HttpPost("Login")]
         public async Task<ActionResult<string>> Login([FromBody] LoginRequestDto dto)
         {
@@ -37,6 +42,13 @@ namespace ScienceArticles.API.Controllers
 
 
         }
+
+
+        /// <summary>
+        /// Responsible for creating user in database.
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         [HttpPost("Register")]
         public async Task<ActionResult> Register([FromBody] RegisterRequestDto dto)
         {

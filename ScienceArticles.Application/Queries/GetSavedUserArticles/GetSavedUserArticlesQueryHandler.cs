@@ -41,9 +41,9 @@ namespace ScienceArticles.Application.Queries.GetSavedUserArticles
                         articleDto.PublicationId = article.PublicationId;
                         articleDto.TextLink = article.TextLink;
                         articleDto.PublicationYear = article.PublicationYear;
-                        articleDto.UserId = article.UserId.Value;
-                        articleDto.CategoryId = article.CategoryId.Value;
-                        articleDto.ArticleId = article.ArticleId.Value;
+                        articleDto.UserId = article.UserId.Value.ToString();
+                        articleDto.CategoryId = article.CategoryId.Value.ToString();
+                        articleDto.ArticleId = article.ArticleId.Value.ToString();
                         articleDto.Title = article.Title;
 
                         articlesDto.Add(articleDto);

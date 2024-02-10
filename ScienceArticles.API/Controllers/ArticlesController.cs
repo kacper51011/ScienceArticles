@@ -7,6 +7,7 @@ using ScienceArticles.Application.Services;
 
 namespace ScienceArticles.API.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class ArticlesController : ControllerBase
@@ -23,6 +24,11 @@ namespace ScienceArticles.API.Controllers
 
         }
 
+        /// <summary>
+        /// Responsible for getting specified number of publications, coming from EuropePMC SOAP web service
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<List<SearchPublicationsResponseItemDto>>> GetArticlesFromService([FromQuery]SearchPublicationsRequestDto dto)
         {
@@ -39,8 +45,12 @@ namespace ScienceArticles.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Responsible for getting one single publication from EuropePMC SOAP web service with specified ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
-
         public async Task<ActionResult<SearchPublicationsResponseItemDto>> GetArticlesFromService([FromRoute] string id)
         {
             try

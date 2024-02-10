@@ -10,6 +10,7 @@ using ScienceArticles.Application.Queries.GetSavedUserArticles;
 
 namespace ScienceArticles.API.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController, Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class UserArticlesController : ControllerBase
@@ -21,6 +22,10 @@ namespace ScienceArticles.API.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Endpoint responsible for getting every article saved by a user. Requires Authentication
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<List<GetUserArticlesResponseDto>>> GetUserArticles()
         {
@@ -39,6 +44,11 @@ namespace ScienceArticles.API.Controllers
 
         }
 
+        /// <summary>
+        /// Responsible for saving publication for user, based on publicationId, with specified, choosen by user category. Requires Authentication
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> SaveUserArticle(CreateSavedUserRequestDto dto)
         {
@@ -56,8 +66,14 @@ namespace ScienceArticles.API.Controllers
             }
 
         }
-        [HttpDelete]
 
+        /// <summary>
+        /// Responsible for deleting saved article, requires Authentication
+        /// </summary>
+        /// <param name="articleId"></param>
+        /// <returns></returns>
+
+        [HttpDelete]
         public async Task<ActionResult> DeleteUserArticle(string articleId)
         {
             try

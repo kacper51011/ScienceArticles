@@ -10,13 +10,25 @@ namespace ScienceArticles.Application.Dtos.GetUserArticles
 {
     public class GetUserArticlesResponseDto
     {
-        public Guid ArticleId { get; set; }
+        /// <summary>
+        /// Saved User Article Id
+        /// </summary>
+        public string ArticleId { get; set; }
+        /// <summary>
+        /// Publication Id, coming from external service
+        /// </summary>
         public string PublicationId { get; set; }
         public string Title { get; set; }
         public string PublicationYear { get; set; }
         public string Abstract { get; set; }
         public string TextLink { get; set; }
-        public Guid UserId { get; set; }
-        public Guid CategoryId { get; set; }
+        /// <summary>
+        /// UserId, coming from User who created the saved Article
+        /// </summary>
+        public string UserId { get; set; }
+        /// <summary>
+        /// Category Id, associated with specific Category
+        /// </summary>
+        public string CategoryId { get; set; }
     }
 }

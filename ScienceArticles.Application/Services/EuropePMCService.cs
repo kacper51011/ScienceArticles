@@ -56,7 +56,7 @@ namespace ScienceArticles.Application.Services
         {
             try
             {
-                var response = await _client.searchPublicationsAsync(dto.QueryString, "core", "*", dto.PageSize.ToString(), null, dto.SynonymsIncluded.ToString().ToLower(), null);
+                var response = await _client.searchPublicationsAsync(dto.Query, "core", "*", dto.PageSize.ToString(), null, dto.SynonymsIncluded.ToString().ToLower(), null);
 
                 var data = response.@return.resultList;
 

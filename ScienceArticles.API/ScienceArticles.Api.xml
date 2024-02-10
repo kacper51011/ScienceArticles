@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ScienceArticles.API</name>
+    </assembly>
+    <members>
+        <member name="M:ScienceArticles.API.Controllers.ArticlesController.GetArticlesFromService(ScienceArticles.Application.Dtos.SearchPublications.SearchPublicationsRequestDto)">
+            <summary>
+            Responsible for getting specified number of publications, coming from EuropePMC SOAP web service
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ScienceArticles.API.Controllers.ArticlesController.GetArticlesFromService(System.String)">
+            <summary>
+            Responsible for getting one single publication from EuropePMC SOAP web service with specified ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ScienceArticles.API.Controllers.CategoriesController.GetCategories">
+            <summary>
+            Endpoint for getting categories, used when creating saved user articles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ScienceArticles.API.Controllers.UserArticlesController">
+            <summary>
+            Endpoints for saving, geting and deleting Articles for specific user, requires Authorization
+            </summary>
+        </member>
+        <member name="M:ScienceArticles.API.Controllers.UserArticlesController.GetUserArticles">
+            <summary>
+            Endpoint responsible for getting every article saved by a user. Requires Authentication
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ScienceArticles.API.Controllers.UserArticlesController.SaveUserArticle(ScienceArticles.Application.Dtos.CreateSavedUserArticle.CreateSavedUserRequestDto)">
+            <summary>
+            Responsible for saving publication for user, based on publicationId, with specified, choosen by user category. Requires Authentication
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ScienceArticles.API.Controllers.UserArticlesController.DeleteUserArticle(System.String)">
+            <summary>
+            Responsible for deleting saved article, requires Authentication
+            </summary>
+            <param name="articleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ScienceArticles.API.Controllers.UsersController.Login(ScienceArticles.Application.Dtos.Login.LoginRequestDto)">
+            <summary>
+            Endpoint for authorizing a user.
+            </summary>
+            <param name="dto"></param>
+            <returns>Returns JWT Token</returns>
+        </member>
+        <member name="M:ScienceArticles.API.Controllers.UsersController.Register(ScienceArticles.Application.Dtos.Register.RegisterRequestDto)">
+            <summary>
+            Responsible for creating user in database.
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ScienceArticles.API.Migrations.init">
+            <inheritdoc />
+        </member>
+        <member name="M:ScienceArticles.API.Migrations.init.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ScienceArticles.API.Migrations.init.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:ScienceArticles.API.Migrations.init.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

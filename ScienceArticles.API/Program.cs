@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -10,6 +11,7 @@ using ScienceArticles.Domain.Interfaces;
 using ScienceArticles.Infrastructure.Db;
 using ScienceArticles.Infrastructure.Repositories;
 using System.Diagnostics;
+using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -78,6 +80,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(option =>
 {
+
+    //Including xml comments
+    var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile);
+    option.IncludeXmlComments(xmlCommentsFullPath);
+
+    option.SwaggerDoc("ScienceArticlesApiSpecification", new OpenApiInfo
+    {
+        Title = "Science Articles Api",
+        Version = "1",
+        
+    });
+
+    //security definition for swagger
     option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -88,6 +104,8 @@ builder.Services.AddSwaggerGen(option =>
         Scheme = "Bearer"
     });
 
+
+    //security requirement for swagger
     option.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
@@ -111,7 +129,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(setup =>
+    {
+        setup.SwaggerEndpoint("/swagger/ScienceArticlesApiSpecification/swagger.json", "Science Articles Api");
+        setup.RoutePrefix = "";
+    });
 }
 
 
