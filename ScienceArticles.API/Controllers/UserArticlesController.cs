@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ScienceArticles.Application.Commands.CreateSavedUserArticle;
+using ScienceArticles.Application.Commands.DeleteSavedUserArticle;
 using ScienceArticles.Application.Dtos.CreateSavedUserArticle;
 using ScienceArticles.Application.Dtos.GetUserArticles;
 using ScienceArticles.Application.Queries.GetSavedUserArticles;
@@ -46,7 +47,7 @@ namespace ScienceArticles.API.Controllers
                 var command = new CreateSavedUserArticleCommand(dto);
                 await _mediator.Send(command);
 
-                return Ok(command);
+                return Ok();
             }
             catch (Exception)
             {
@@ -54,6 +55,31 @@ namespace ScienceArticles.API.Controllers
                 throw;
             }
 
+        }
+        [HttpDelete]
+
+        public async Task<ActionResult> DeleteUserArticle(string articleId)
+        {
+            try
+            {
+                try
+                {
+                    var command = new DeleteSavedUserArticleCommand(articleId);
+                    await _mediator.Send(command);
+
+                    return Ok();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
