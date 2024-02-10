@@ -13,6 +13,8 @@ namespace ScienceArticles.Domain.Interfaces
         public Task<List<Article>> GetUserSavedArticles(UserId userId);
         public Task DeleteSavedArticle(Article article);
 
+        public Task<Article?> GetArticleById(ArticleId articleId);
+
         public Task SaveArticle(Article article);
     }
 }

@@ -27,6 +27,13 @@ namespace ScienceArticles.Infrastructure.Repositories
 
         }
 
+        public async Task<Article?> GetArticleById(ArticleId articleId)
+        {
+            var article = await _context.Articles.FirstOrDefaultAsync(x => x.ArticleId == articleId);
+
+            return article;
+        }
+
         public async Task<List<Article>> GetUserSavedArticles(UserId userId)
         {
             var savedArticles = await _context.Articles.Where(a => a.UserId == userId).ToListAsync();
