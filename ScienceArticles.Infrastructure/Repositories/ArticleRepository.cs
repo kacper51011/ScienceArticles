@@ -1,4 +1,5 @@
-﻿using ScienceArticles.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using ScienceArticles.Domain.Entities;
 using ScienceArticles.Domain.Interfaces;
 using ScienceArticles.Domain.ValueObjects;
 using ScienceArticles.Infrastructure.Db;
@@ -22,16 +23,21 @@ namespace ScienceArticles.Infrastructure.Repositories
         public async Task DeleteSavedArticle(Article article)
         {
             _context.Articles.Remove(article);
+            await _context.SaveChangesAsync();
+
         }
 
-        public Task<List<Article>> GetUserSavedArticles(UserId userId)
+        public async Task<List<Article>> GetUserSavedArticles(UserId userId)
         {
-            throw new NotImplementedException();
+            var savedArticles = await _context.Articles.Where(a => a.UserId == userId).ToListAsync();
+
+            return savedArticles;
         }
 
-        public Task SaveArticle(Article article)
+        public async Task SaveArticle(Article article)
         {
-            throw new NotImplementedException();
+            await _context.Articles.AddAsync(article);
+            await _context.SaveChangesAsync();
         }
     }
 }

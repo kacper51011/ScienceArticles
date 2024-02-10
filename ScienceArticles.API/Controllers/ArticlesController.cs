@@ -9,12 +9,12 @@ namespace ScienceArticles.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ArticleController : ControllerBase
+    public class ArticlesController : ControllerBase
     {
         private readonly IMediator _mediator;
         private readonly IEuropePMCService _europePMCService;
 
-        public ArticleController(IMediator mediator, IEuropePMCService europePMCService)
+        public ArticlesController(IMediator mediator, IEuropePMCService europePMCService)
         {
             _mediator = mediator;
             _europePMCService = europePMCService;
