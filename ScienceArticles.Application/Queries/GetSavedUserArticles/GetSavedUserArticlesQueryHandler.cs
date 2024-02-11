@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Protocols.WsTrust;
 using ScienceArticles.Application.Dtos.GetUserArticles;
+using ScienceArticles.Application.Exceptions;
 using ScienceArticles.Domain.Interfaces;
 using ScienceArticles.Domain.ValueObjects;
 using System.Security.Claims;
@@ -27,7 +28,7 @@ namespace ScienceArticles.Application.Queries.GetSavedUserArticles
                 var userId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
                 if (userId == null)
                 {
-                    throw new ArgumentNullException("UserId not specified");
+                    throw new UnauthorizedException("UserId not specified");
                 }
 
                 var articlesDto = new List<GetUserArticlesResponseDto>();

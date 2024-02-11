@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
+using ScienceArticles.Application.Exceptions;
 using ScienceArticles.Application.Services;
 using ScienceArticles.Domain.Entities;
 using ScienceArticles.Domain.Interfaces;
@@ -33,13 +34,13 @@ namespace ScienceArticles.Application.Commands.CreateSavedUserArticle
                 var userId = _contextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
                 if (userId == null)
                 {
-                    throw new ArgumentNullException("UserId not specified");
+                    throw new UnauthorizedException("UserId not specified or incorrect");
                 }
 
                 var publication = await _europePMCService.FindPublicationById(request.dto.PublicationId);
                 if (publication == null)
                 {
-                    throw new ArgumentNullException("couldn`t find specified publication");
+                    throw new NotFoundException("couldn`t find specified publication");
                 }
 
                 var ArticleToSave = Article.Create(publication.PublicationId, publication.Title, publication.PublicationYear, publication.Abstract, publication.TextLink, new UserId(Guid.Parse(userId)) , new CategoryId(Guid.Parse(request.dto.CategoryId)));

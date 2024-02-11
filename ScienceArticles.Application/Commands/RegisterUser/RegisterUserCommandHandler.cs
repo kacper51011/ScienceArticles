@@ -1,5 +1,6 @@
 ﻿using BCrypt.Net;
 using MediatR;
+using ScienceArticles.Application.Exceptions;
 using ScienceArticles.Domain.Aggregates;
 using ScienceArticles.Domain.Interfaces;
 
@@ -21,13 +22,13 @@ namespace ScienceArticles.Application.Commands.RegisterUser
             {
                 if (request.dto.Password != request.dto.ConfirmPassword)
                 {
-                    new ArgumentException("Passwords are not the same!");
+                    new ArgumentNotValidException("Passwords are not the same!");
                 }
 
                 var userWithSameName = await _userRepository.GetUserByUsernameAsync(request.dto.UserName);
                 if (userWithSameName != null)
                 {
-                    new ArgumentException("User with that username already exists");
+                    new ArgumentNotValidException("User with that username already exists");
                 }
 
                 var hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.dto.Password);

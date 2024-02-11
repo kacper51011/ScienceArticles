@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens.Saml;
+using ScienceArticles.Application.Exceptions;
 using ScienceArticles.Domain.Interfaces;
 using ScienceArticles.Domain.ValueObjects;
 using System;
@@ -32,12 +33,12 @@ namespace ScienceArticles.Application.Commands.DeleteSavedUserArticle
                 var articleToDelete = await _articleRepository.GetArticleById(new ArticleId(Guid.Parse(request.articleId)));
                 if (articleToDelete == null)
                 {
-                    throw new ArgumentNullException("Cannot find that article");
+                    throw new ArgumentNotValidException("Cannot find that article");
                 }
 
                 else if (userId != articleToDelete.UserId.Value.ToString())
                 {
-                    throw new InvalidOperationException("Not proper userId, try again with other article or other account");
+                    throw new UnauthorizedException("You are not allowed to do this action, saved article belongs to someone else");
                 }
 
                 await _articleRepository.DeleteSavedArticle(articleToDelete);

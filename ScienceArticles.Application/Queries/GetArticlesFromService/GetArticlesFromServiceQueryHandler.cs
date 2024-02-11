@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using ScienceArticles.Application.Dtos.SearchPublications;
+using ScienceArticles.Application.Exceptions;
 using ScienceArticles.Application.Services;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,10 @@ namespace ScienceArticles.Application.Queries.GetArticlesFromService
             try
             {
                 var response = await _service.FindPublicationsAsync(request.dto);
+                if(response == null ||  response.Count == 0)
+                {
+                    throw new NotFoundException("Couldn`t find publications for query");
+                }
 
                 return response;
             }
