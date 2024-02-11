@@ -72,6 +72,7 @@ builder.Services.AddSingleton<IEuropePMCService, EuropePMCService>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IArticleRepository, ArticleRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(GetArticlesFromServiceQueryHandler)));
 

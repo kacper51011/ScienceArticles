@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ScienceArticles.Application.Dtos.SearchPublications;
+using ScienceArticles.Application.Queries.GetArticleFromServiceById;
 using ScienceArticles.Application.Queries.GetArticlesFromService;
 using ScienceArticles.Application.Services;
 
@@ -13,12 +14,10 @@ namespace ScienceArticles.API.Controllers
     public class ArticlesController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly IEuropePMCService _europePMCService;
 
-        public ArticlesController(IMediator mediator, IEuropePMCService europePMCService)
+        public ArticlesController(IMediator mediator)
         {
             _mediator = mediator;
-            _europePMCService = europePMCService;
             
             
 
@@ -55,9 +54,11 @@ namespace ScienceArticles.API.Controllers
         {
             try
             {
-                var response = await _europePMCService.FindPublicationById(publicationId);
+                var query = new GetArticleFromServiceByIdQuery(publicationId);
+                var response = await _mediator.Send(query);
                 return Ok(response);
             }
+
             catch (Exception)
             {
 
