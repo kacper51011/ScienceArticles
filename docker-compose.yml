@@ -7,8 +7,7 @@ services:
      - 1433:1433
      environment:
        ACCEPT_EULA: Y
-       MSSQL_SA_PASSWORD: Kacper123
-       SA_PASSWORD: Kacper123
+       MSSQL_SA_PASSWORD: RandomPassword123
        MSSQL_PID: EXPRESS
 
 

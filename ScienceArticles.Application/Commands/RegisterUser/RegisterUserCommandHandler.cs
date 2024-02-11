@@ -22,13 +22,13 @@ namespace ScienceArticles.Application.Commands.RegisterUser
             {
                 if (request.dto.Password != request.dto.ConfirmPassword)
                 {
-                    new ArgumentNotValidException("Passwords are not the same!");
+                    throw new ArgumentNotValidException("Passwords are not the same!");
                 }
 
                 var userWithSameName = await _userRepository.GetUserByUsernameAsync(request.dto.UserName);
                 if (userWithSameName != null)
                 {
-                    new ArgumentNotValidException("User with that username already exists");
+                    throw new ArgumentNotValidException("User with that username already exists");
                 }
 
                 var hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.dto.Password);
