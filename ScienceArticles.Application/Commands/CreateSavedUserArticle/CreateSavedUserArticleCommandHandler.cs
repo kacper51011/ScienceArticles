@@ -12,13 +12,15 @@ namespace ScienceArticles.Application.Commands.CreateSavedUserArticle
     {
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly IArticleRepository _articleRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IEuropePMCService _europePMCService;
 
-        public CreateSavedUserArticleCommandHandler(IHttpContextAccessor contextAccessor, IArticleRepository articleRepository, IEuropePMCService europePMCService)
+        public CreateSavedUserArticleCommandHandler(IHttpContextAccessor contextAccessor, IArticleRepository articleRepository, IEuropePMCService europePMCService, IUnitOfWork unitOfWork)
         {
             _contextAccessor = contextAccessor;
             _articleRepository = articleRepository;
             _europePMCService = europePMCService;
+            _unitOfWork = unitOfWork;
 
 
 
@@ -43,6 +45,7 @@ namespace ScienceArticles.Application.Commands.CreateSavedUserArticle
                 var ArticleToSave = Article.Create(publication.PublicationId, publication.Title, publication.PublicationYear, publication.Abstract, publication.TextLink, new UserId(Guid.Parse(userId)) , new CategoryId(Guid.Parse(request.dto.CategoryId)));
 
                 await _articleRepository.SaveArticle(ArticleToSave);
+                await _unitOfWork.SaveChangesAsync();
 
                 return;
             }

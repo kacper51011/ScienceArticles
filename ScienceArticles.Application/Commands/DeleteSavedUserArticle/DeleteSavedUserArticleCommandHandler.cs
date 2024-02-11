@@ -16,12 +16,13 @@ namespace ScienceArticles.Application.Commands.DeleteSavedUserArticle
     {
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly IArticleRepository _articleRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteSavedUserArticleCommandHandler(IHttpContextAccessor contextAccessor, IArticleRepository articleRepository)
+        public DeleteSavedUserArticleCommandHandler(IHttpContextAccessor contextAccessor, IArticleRepository articleRepository, IUnitOfWork unitOfWork)
         {
             _contextAccessor = contextAccessor;
             _articleRepository = articleRepository;
-
+            _unitOfWork = unitOfWork;
         }
         public async Task Handle(DeleteSavedUserArticleCommand request, CancellationToken cancellationToken)
         {

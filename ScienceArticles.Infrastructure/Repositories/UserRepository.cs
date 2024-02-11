@@ -28,7 +28,7 @@ namespace ScienceArticles.Infrastructure.Repositories
 
         public async Task<User?> GetUserByUsernameAsync(string username)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+            return await _context.Users.Where(u => u.Username == username).FirstOrDefaultAsync();
         }
 
         public async Task RegisterUserAsync(User user)

@@ -8,9 +8,11 @@ namespace ScienceArticles.Application.Commands.RegisterUser
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand>
     {
         private readonly IUserRepository _userRepository;
-        public RegisterUserCommandHandler(IUserRepository userRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public RegisterUserCommandHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
 
         }
         public async Task Handle(RegisterUserCommand request, CancellationToken cancellationToken)
@@ -33,6 +35,7 @@ namespace ScienceArticles.Application.Commands.RegisterUser
                 var newUser = User.Create(request.dto.UserName, hashedPassword);
 
                 await _userRepository.RegisterUserAsync(newUser);
+                await _unitOfWork.SaveChangesAsync();
 
                 return;
 
