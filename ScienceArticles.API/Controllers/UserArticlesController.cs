@@ -73,8 +73,9 @@ namespace ScienceArticles.API.Controllers
         /// <param name="articleId"></param>
         /// <returns></returns>
 
-        [HttpDelete]
-        public async Task<ActionResult> DeleteUserArticle(string articleId)
+        [HttpDelete("{articleId}")]
+
+        public async Task<ActionResult> DeleteUserArticle([FromRoute] string articleId)
         {
             try
             {

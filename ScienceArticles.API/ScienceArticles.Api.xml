@@ -11,23 +11,18 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:ScienceArticles.API.Controllers.ArticlesController.GetArticlesFromService(System.String)">
+        <member name="M:ScienceArticles.API.Controllers.ArticlesController.GetArticleFromServiceByPublicationId(System.String)">
             <summary>
             Responsible for getting one single publication from EuropePMC SOAP web service with specified ID
             </summary>
-            <param name="id"></param>
+            <param name="publicationId"></param>
             <returns></returns>
         </member>
         <member name="M:ScienceArticles.API.Controllers.CategoriesController.GetCategories">
             <summary>
             Endpoint for getting categories, used when creating saved user articles
             </summary>
-            <returns></returns>
-        </member>
-        <member name="T:ScienceArticles.API.Controllers.UserArticlesController">
-            <summary>
-            Endpoints for saving, geting and deleting Articles for specific user, requires Authorization
-            </summary>
+            <returns>List of categories possible to use</returns>
         </member>
         <member name="M:ScienceArticles.API.Controllers.UserArticlesController.GetUserArticles">
             <summary>

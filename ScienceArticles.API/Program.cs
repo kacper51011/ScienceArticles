@@ -90,8 +90,21 @@ builder.Services.AddSwaggerGen(option =>
     {
         Title = "Science Articles Api",
         Version = "1",
-        
-    });
+        Contact = new()
+        {
+            Name = "Kacper Tylec",
+            Email = "kacper.tylec1999@gmail.com",
+            Url = new Uri("https://github.com/kacper51011")
+        },
+        Description="<h3>Main capabilities of Science Articles Api:<h3/>" +
+        "<ul>" +
+        "<li>It is connected with open-source EuropePMC SOAP web service through wsdl file, which makes it possible to get science publications through that</li>" +
+        "<li>It provides basic auth with JWT Tokens, which are used to get UserId in User Articles endpoints </li>" +
+        "<li>Created with CLEAN Architecture, with .NET 8, Entity Framework Core and SQL Server </li>" +
+        " <ul/>" +
+        ""
+
+    }) ;
 
     //security definition for swagger
     option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

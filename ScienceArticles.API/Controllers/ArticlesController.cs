@@ -48,14 +48,14 @@ namespace ScienceArticles.API.Controllers
         /// <summary>
         /// Responsible for getting one single publication from EuropePMC SOAP web service with specified ID
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="publicationId"></param>
         /// <returns></returns>
-        [HttpGet("{id}")]
-        public async Task<ActionResult<SearchPublicationsResponseItemDto>> GetArticlesFromService([FromRoute] string id)
+        [HttpGet("{publicationId}")]
+        public async Task<ActionResult<SearchPublicationsResponseItemDto>> GetArticleFromServiceByPublicationId([FromRoute] string publicationId)
         {
             try
             {
-                var response = await _europePMCService.FindPublicationById(id);
+                var response = await _europePMCService.FindPublicationById(publicationId);
                 return Ok(response);
             }
             catch (Exception)

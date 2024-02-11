@@ -20,7 +20,7 @@ namespace ScienceArticles.API.Controllers
         /// <summary>
         /// Endpoint for getting categories, used when creating saved user articles
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of categories possible to use</returns>
         [HttpGet]
         public async Task<ActionResult<List<CategoryResponeItem>>> GetCategories()
         {
