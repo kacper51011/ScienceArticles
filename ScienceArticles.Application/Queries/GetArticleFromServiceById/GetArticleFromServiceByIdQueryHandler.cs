@@ -24,7 +24,7 @@ namespace ScienceArticles.Application.Queries.GetArticleFromServiceById
 			try
 			{
                 var publication = await _europePMCService.FindPublicationById(request.publicationId);
-                if (publication == null)
+                if (publication == null || publication.PublicationId != request.publicationId)
                 {
                     throw new NotFoundException("Couldn`t find publication with specified Id in EuropePMC");
                 }

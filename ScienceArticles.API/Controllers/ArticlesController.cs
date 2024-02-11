@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ScienceArticles.Application.Dtos.SearchPublications;
+using ScienceArticles.Application.Exceptions;
 using ScienceArticles.Application.Queries.GetArticleFromServiceById;
 using ScienceArticles.Application.Queries.GetArticlesFromService;
 using ScienceArticles.Application.Services;
@@ -37,6 +38,11 @@ namespace ScienceArticles.API.Controllers
                 var response = await _mediator.Send(query);
                 return Ok(response);
             }
+            catch (NotFoundException ex)
+            {
+
+                return StatusCode(404, ex.Message);
+            }
             catch (Exception)
             {
 
@@ -57,6 +63,11 @@ namespace ScienceArticles.API.Controllers
                 var query = new GetArticleFromServiceByIdQuery(publicationId);
                 var response = await _mediator.Send(query);
                 return Ok(response);
+            }
+            catch (NotFoundException ex)
+            {
+
+                return StatusCode(404, ex.Message);
             }
 
             catch (Exception)

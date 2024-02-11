@@ -47,7 +47,7 @@ namespace ScienceArticles.Application.Services
             catch (Exception)
             {
 
-                throw;
+                return null;
             }
 
         }
@@ -99,7 +99,7 @@ namespace ScienceArticles.Application.Services
             catch (Exception)
             {
 
-                throw;
+                return null;
             }
 
 
