@@ -19,4 +19,8 @@
     <ProjectReference Include="..\ScienceArticles.Infrastructure\ScienceArticles.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+
 </Project>
