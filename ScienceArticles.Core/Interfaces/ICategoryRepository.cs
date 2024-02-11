@@ -1,4 +1,5 @@
 ﻿using ScienceArticles.Domain.Entities;
+using ScienceArticles.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace ScienceArticles.Domain.Interfaces
     {
         public Task<List<Category>> GetCategories();
 
+        public Task<Category?> GetCategoryById(CategoryId categoryId);
     }
 }

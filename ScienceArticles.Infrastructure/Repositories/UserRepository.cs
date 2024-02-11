@@ -34,7 +34,6 @@ namespace ScienceArticles.Infrastructure.Repositories
         public async Task RegisterUserAsync(User user)
         {
             await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
         }
     }
 }

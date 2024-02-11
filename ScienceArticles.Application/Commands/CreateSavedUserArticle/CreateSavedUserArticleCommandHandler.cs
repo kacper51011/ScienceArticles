@@ -13,18 +13,17 @@ namespace ScienceArticles.Application.Commands.CreateSavedUserArticle
     {
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly IArticleRepository _articleRepository;
+        private readonly ICategoryRepository _categoryRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IEuropePMCService _europePMCService;
 
-        public CreateSavedUserArticleCommandHandler(IHttpContextAccessor contextAccessor, IArticleRepository articleRepository, IEuropePMCService europePMCService, IUnitOfWork unitOfWork)
+        public CreateSavedUserArticleCommandHandler(IHttpContextAccessor contextAccessor, IArticleRepository articleRepository, IEuropePMCService europePMCService, IUnitOfWork unitOfWork, ICategoryRepository categoryRepository)
         {
             _contextAccessor = contextAccessor;
             _articleRepository = articleRepository;
             _europePMCService = europePMCService;
             _unitOfWork = unitOfWork;
-
-
-
+            _categoryRepository = categoryRepository;
         }
         public async Task Handle(CreateSavedUserArticleCommand request, CancellationToken cancellationToken)
         {
@@ -40,7 +39,13 @@ namespace ScienceArticles.Application.Commands.CreateSavedUserArticle
                 var publication = await _europePMCService.FindPublicationById(request.dto.PublicationId);
                 if (publication == null)
                 {
-                    throw new NotFoundException("couldn`t find specified publication");
+                    throw new NotFoundException("Couldn`t find specified publication");
+                }
+
+                var category = await _categoryRepository.GetCategoryById(new CategoryId(Guid.Parse(request.dto.CategoryId)));
+                if (category == null)
+                {
+                    throw new NotFoundException("Couldn`t find specified category");
                 }
 
                 var ArticleToSave = Article.Create(publication.PublicationId, publication.Title, publication.PublicationYear, publication.Abstract, publication.TextLink, new UserId(Guid.Parse(userId)) , new CategoryId(Guid.Parse(request.dto.CategoryId)));

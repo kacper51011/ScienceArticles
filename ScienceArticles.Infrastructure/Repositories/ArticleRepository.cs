@@ -23,7 +23,6 @@ namespace ScienceArticles.Infrastructure.Repositories
         public async Task DeleteSavedArticle(Article article)
         {
             _context.Articles.Remove(article);
-            await _context.SaveChangesAsync();
 
         }
 
@@ -44,7 +43,6 @@ namespace ScienceArticles.Infrastructure.Repositories
         public async Task SaveArticle(Article article)
         {
             await _context.Articles.AddAsync(article);
-            await _context.SaveChangesAsync();
         }
     }
 }

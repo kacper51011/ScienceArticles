@@ -6,6 +6,7 @@ using ScienceArticles.Application.Commands.CreateSavedUserArticle;
 using ScienceArticles.Application.Commands.DeleteSavedUserArticle;
 using ScienceArticles.Application.Dtos.CreateSavedUserArticle;
 using ScienceArticles.Application.Dtos.GetUserArticles;
+using ScienceArticles.Application.Exceptions;
 using ScienceArticles.Application.Queries.GetSavedUserArticles;
 
 namespace ScienceArticles.API.Controllers
@@ -36,6 +37,16 @@ namespace ScienceArticles.API.Controllers
 
                 return Ok(response);
             }
+            catch (NotFoundException ex)
+            {
+
+                return StatusCode(404, ex.Message);
+            }
+            catch (UnauthorizedException ex)
+            {
+
+                return StatusCode(401, ex.Message);
+            }
             catch (Exception)
             {
 
@@ -59,6 +70,17 @@ namespace ScienceArticles.API.Controllers
 
                 return Ok();
             }
+            catch (UnauthorizedException ex)
+            {
+
+                return StatusCode(401, ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+
+                return StatusCode(404, ex.Message);
+
+            }
             catch (Exception)
             {
 
@@ -77,26 +99,32 @@ namespace ScienceArticles.API.Controllers
 
         public async Task<ActionResult> DeleteUserArticle([FromRoute] string articleId)
         {
+
             try
             {
-                try
-                {
-                    var command = new DeleteSavedUserArticleCommand(articleId);
-                    await _mediator.Send(command);
+                var command = new DeleteSavedUserArticleCommand(articleId);
+                await _mediator.Send(command);
 
-                    return Ok();
-                }
-                catch (Exception)
-                {
+                return Ok();
+            }
+            catch (UnauthorizedException ex)
+            {
 
-                    throw;
-                }
+                return StatusCode(401, ex.Message);
+            }
+            catch (NotFoundException ex)
+            {
+
+                return StatusCode(404, ex.Message);
+
             }
             catch (Exception)
             {
 
                 throw;
             }
+
+
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ScienceArticles.Domain.Entities;
 using ScienceArticles.Domain.Interfaces;
+using ScienceArticles.Domain.ValueObjects;
 using ScienceArticles.Infrastructure.Db;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,12 @@ namespace ScienceArticles.Infrastructure.Repositories
         {
             var categories = await _context.Categories.ToListAsync();
             return categories;
+        }
+
+        public async Task<Category?> GetCategoryById(CategoryId categoryId)
+        {
+            var category = await _context.Categories.Where(x => x.CategoryId == categoryId).FirstOrDefaultAsync();
+            return category;
         }
     }
 }

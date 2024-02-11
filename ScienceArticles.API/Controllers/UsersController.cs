@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ScienceArticles.Application.Commands.RegisterUser;
 using ScienceArticles.Application.Dtos.Login;
 using ScienceArticles.Application.Dtos.Register;
+using ScienceArticles.Application.Exceptions;
 using ScienceArticles.Application.Queries.GetUserCredentials;
 
 namespace ScienceArticles.API.Controllers
@@ -34,6 +35,11 @@ namespace ScienceArticles.API.Controllers
 
                 return Ok(response);
             }
+            catch (ArgumentNotValidException ex)
+            {
+
+                return StatusCode(401, ex.Message);
+            }
             catch (Exception)
             {
 
@@ -42,7 +48,6 @@ namespace ScienceArticles.API.Controllers
 
 
         }
-
 
         /// <summary>
         /// Responsible for creating user in database.
@@ -58,11 +63,17 @@ namespace ScienceArticles.API.Controllers
 
                 return Ok();
             }
+            catch (ArgumentNotValidException ex)
+            {
+
+                return StatusCode(401, ex.Message);
+            }
             catch (Exception)
             {
 
                 throw;
             }
+
 
 
         }
