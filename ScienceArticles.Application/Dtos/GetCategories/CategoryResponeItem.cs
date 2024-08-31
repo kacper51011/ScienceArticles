@@ -16,5 +16,9 @@ namespace ScienceArticles.Application.Dtos.GetCategories
         /// Name of the category
         /// </summary>
         public string Name { get; set; }
+
+
+
+
     }
 }

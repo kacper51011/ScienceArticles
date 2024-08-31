@@ -17,6 +17,8 @@ namespace ScienceArticles.Application.Dtos.GetUserArticles
         /// <summary>
         /// Publication Id, coming from external service
         /// </summary>
+        /// 
+
         public string PublicationId { get; set; }
         public string Title { get; set; }
         public string PublicationYear { get; set; }
