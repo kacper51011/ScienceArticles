@@ -8,6 +8,7 @@ pipeline {
                     echo 'Starting Initialize Stage (Mock)...'
                     sleep time: 15, unit: 'SECONDS'  // 15-sekundowy bufor
                 }
+                checkout scm
             }
         }
         stage('Build') {
