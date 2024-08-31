@@ -1,0 +1,70 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Initialize') {
+            steps {
+                script {
+                    echo 'Starting Initialize Stage (Mock)...'
+                    sleep time: 15, unit: 'SECONDS'  // 15-sekundowy bufor
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                script {
+                    echo 'Starting Build Stage (Mock)...'
+                    sleep time: 15, unit: 'SECONDS'  // 15-sekundowy bufor
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                script {
+                    echo 'Starting Test Stage (Mock)...'
+                    sleep time: 15, unit: 'SECONDS'  // 15-sekundowy bufor
+                }
+            }
+        }
+        stage('Code Analysis') {
+            steps {
+                script {
+                    echo 'Starting Code Analysis Stage (Mock)...'
+                    sleep time: 15, unit: 'SECONDS'  // 15-sekundowy bufor
+                }
+            }
+        }
+        stage('Package') {
+            steps {
+                script {
+                    echo 'Starting Package Stage (Mock)...'
+                    sleep time: 15, unit: 'SECONDS'  // 15-sekundowy bufor
+                }
+            }
+        }
+        stage('Deploy to Staging') {
+            steps {
+                script {
+                    echo 'Starting Deploy to Staging Stage (Mock)...'
+                    sleep time: 15, unit: 'SECONDS'  // 15-sekundowy bufor
+                }
+            }
+        }
+        stage('Deploy to Production') {
+            steps {
+                script {
+                    echo 'Starting Deploy to Production Stage (Mock)...'
+                    sleep time: 15, unit: 'SECONDS'  // 15-sekundowy bufor
+                }
+            }
+        }
+        stage('Cleanup') {
+            steps {
+                script {
+                    echo 'Starting Cleanup Stage (Mock)...'
+                    sleep time: 15, unit: 'SECONDS'  // 15-sekundowy bufor
+                }
+            }
+        }
+    }
+}
