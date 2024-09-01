@@ -19,9 +19,6 @@ namespace ScienceArticles.API.Controllers
         public ArticlesController(IMediator mediator)
         {
             _mediator = mediator;
-            
-            
-
         }
 
         /// <summary>
@@ -40,12 +37,10 @@ namespace ScienceArticles.API.Controllers
             }
             catch (NotFoundException ex)
             {
-
                 return StatusCode(404, ex.Message);
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
